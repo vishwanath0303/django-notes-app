@@ -11,13 +11,13 @@ pipeline {
         stage("Build"){
             steps {
                 echo "Building the image"
-                sh "docker build -t my-note-app ."
+                sh "docker build -t my-note-app:$BUILD_NUMBER ."
             }
         }
         stage('Start image'){
             steps{
                 script{
-                    sh 'docker run -d -p 8181:8181 --name django-notes-app django-notes-app:$BUILD_NUMBER '
+                    sh 'docker run -d -p 8181:8181 --name my-note-app my-note-app:$BUILD_NUMBER '
                 }
             }
     }
