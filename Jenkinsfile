@@ -14,6 +14,13 @@ pipeline {
                 sh "docker build -t my-note-app ."
             }
         }
+        stage('Start image'){
+            steps{
+                script{
+                    sh 'docker run -d -p 8181:8181 --name django-notes-app django-notes-app:$BUILD_NUMBER '
+                }
+            }
+    }
         stage("Push to Docker Hub"){
             steps {
                 echo "Pushing the image to docker hub"
