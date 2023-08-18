@@ -18,8 +18,8 @@ pipeline {
            steps {
              script{
                sh 'docker ps -a -q'
-               sh 'docker stop spring '
-               sh 'docker rm spring '
+               sh 'docker stop my-note-app '
+               sh 'docker rm my-note-app '
              }
            }
         }
