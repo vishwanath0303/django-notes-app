@@ -14,6 +14,15 @@ pipeline {
                 sh "docker build -t my-note-app:$BUILD_NUMBER ."
             }
         }
+          stage ("Stop and remove") {
+           steps {
+             script{
+               sh 'docker ps -a -q'
+               sh 'docker stop spring '
+               sh 'docker rm spring '
+             }
+           }
+        }
         stage('Start image'){
             steps{
                 script{
